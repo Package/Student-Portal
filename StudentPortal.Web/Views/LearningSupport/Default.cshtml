@@ -1,0 +1,76 @@
+﻿@model StudentPortal.Domain.Models.LearningSupport
+
+@{
+    ViewBag.Title = "Learning Support";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Applications")">My applications</a></li>
+    <li><a href="@Url.Action("Manage", "Applications")">Current application</a></li>
+    <li class="active">Learning support</li>
+</ol>
+
+<h2 class="page-header">Learning Support</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group block">
+        @Html.EditorFor(model => model.CriminalConviction)
+        @Html.LabelFor(model => model.CriminalConviction)
+    </div>
+
+    <div class="form-group block">
+        @Html.EditorFor(model => model.HasDisability)
+        @Html.LabelFor(model => model.HasDisability)
+    </div>
+
+    <div class="form-group block">
+        @Html.EditorFor(model => model.ReceivedLearningSupport)
+        @Html.LabelFor(model => model.ReceivedLearningSupport)
+    </div>
+
+    <div class="form-group block">
+        @Html.EditorFor(model => model.SENStatement)
+        @Html.LabelFor(model => model.SENStatement)
+    </div>
+
+    <div class="form-group block">
+        @Html.EditorFor(model => model.ExamAccessArrangements)
+        @Html.LabelFor(model => model.ExamAccessArrangements)
+    </div>
+
+    if (Model.Disability != null && Model.Disability.Count > 0)
+    {
+        <div class="well">
+            <p class="text-muted help-text">Please select if you feel you would benefit from additional support with any of the following (this will not affect your application)</p>
+
+            @for (int index = 0; index < Model.Disability.Count; index++)
+            {
+                <div class="form-group">
+                    @Html.HiddenFor(model => Model.Disability[index].Name)
+                    @Html.CheckBoxFor(model => Model.Disability[index].HasDisability)
+                    @Html.LabelFor(model => Model.Disability[index].HasDisability, Model.Disability[index].Name)
+                </div>
+            }
+        </div>
+    }
+
+    <p class="text-muted help-text">Please use this section to include any additional support needs, allergies or requirements you feel we should know about.</p>
+    <div class="form-group block">
+        @Html.LabelFor(model => model.Notes)
+        @Html.TextAreaFor(model => model.Notes, new { @class = "form-control", @rows = "10" })
+        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group block">
+        <button class="btn btn-success" type="submit">Continue</button>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

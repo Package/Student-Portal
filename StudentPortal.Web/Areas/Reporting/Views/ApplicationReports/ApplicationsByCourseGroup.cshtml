@@ -1,0 +1,31 @@
+﻿@model Dictionary<CourseGroup, int>
+
+@{
+    ViewBag.Title = "Applications By Course Group Report";
+}
+
+<h2 class="page-header">Applications By Course Group Report</h2>
+
+<table class="table table-condensed table-hover table-striped table-bordered">
+    <tr>
+        <th>Course Group</th>
+        <th>Applications</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Key.Name, "ApplicationsForCourse", "ApplicationReports", new { area = "Reporting", courseGroupCode = item.Key.Id }, null)
+            </td>
+            <td>@item.Value</td>
+        </tr>
+    }
+
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>@(Model.Values.Sum())</strong></td>
+    </tr>
+</table>
+
+@Html.Partial("_PrintReport")

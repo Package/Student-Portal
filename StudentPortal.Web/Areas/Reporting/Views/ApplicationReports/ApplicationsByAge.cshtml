@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StudentPortal.Domain.Models.Reports.ApplicantDetails>
+
+@{
+    ViewBag.Title = "Applications By Age Report";
+
+    string startAge = ViewBag.StartAge;
+    string endAge = ViewBag.EndAge;
+}
+
+<h2 class="page-header">Applications By Age Report</h2>
+
+@using (Html.BeginForm("", "", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("startAge", "Aged between")
+        @Html.TextBox("startAge", startAge, new { type = "number", placeholder = "e.g 18", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("endAge", "and")
+        @Html.TextBox("endAge", endAge, new { type = "number", placeholder = "e.g 20", @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Update</button>
+    </div>
+}
+
+<p>Found @Model.Count() results.</p>
+
+<table class="table table-condensed table-hover table-striped table-bordered">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Finished)</th>
+        <th>Name</th>
+        <th>@Html.DisplayNameFor(model => model.Gender)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Finished.ToString("D")</td>
+            <td>
+                @string.Format("{0} {1}", item.Forename, item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.Partial("_PrintReport")

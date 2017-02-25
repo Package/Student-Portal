@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StudentPortal.Domain.Models.Course>
+
+@{
+    ViewBag.Title = "Prospectus Information";
+    var _groups = (List<CourseGroup>) ViewBag.CourseGroups;
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li class="active">Browse our courses</li>
+</ol>
+
+<h2 class="page-header">Prospectus Information</h2>
+
+<p>Welcome to the online course prospectus for @(ViewBag.Institution). For more information about a particular course, please select 'More details' below.</p>
+<p>Alternatively, you can contact us on <a href="tel:@(ViewBag.ContactPhone)">@(ViewBag.ContactPhone)</a> or email <a href="mailto:@(ViewBag.ContactEmail)">@(ViewBag.ContactEmail)</a> for more information about any of the courses we offer.</p>
+<p>If you have found a course you would like to study, please select 'Apply now' below to begin your application.</p>
+
+<h4 class="page-header">Subject Area</h4>
+<p>If you have an interest in a particular subject area, please select it below to help narrow your search results.</p>
+@foreach (CourseGroup group in _groups)
+{
+    @Html.ActionLink(group.Name, "Default", new { subject = group.Id })
+    if (group != _groups.Last())
+    {
+        // Append the pipe symbol if there are more course groups to show
+        @(" | ")
+    }
+}
+
+<h4 class="page-header">Courses</h4>
+@if (Model != null && Model.Any())
+{
+    <table class="table table-condensed table-hover table-striped table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
+            <th>@Html.DisplayNameFor(model => model.ActiveFrom)</th>
+            <th>@Html.DisplayNameFor(model => model.ActiveTo)</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @{ CourseGroup group = _groups.FirstOrDefault(g => g.Id == item.Type); }
+                    @(group != null ? group.Name : string.Empty)
+                </td>
+                <td>
+                    @(item.ActiveFrom.HasValue ? item.ActiveFrom.Value.ToString("D") : string.Empty)
+                </td>
+                <td>
+                    @(item.ActiveTo.HasValue ? item.ActiveTo.Value.ToString("D") : string.Empty)
+                </td>
+                <td>
+                    @Html.ActionLink("More details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Apply now", "Create", "Applications", new { course = item.Code }, null)
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p class="text-muted">No courses available.</p>
+}
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<StudentPortal.Domain.Models.Reports.ApplicantDetails>
+
+@{
+    ViewBag.Title = "Incomplete Applications Report";
+}
+
+<h2 class="page-header">Incomplete Applications Report</h2>
+
+<p>Found @Model.Count() results.</p>
+
+<table class="table table-condensed table-hover table-striped table-bordered">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Started)</th>
+        <th>Name</th>
+        <th>@Html.DisplayNameFor(model => model.Gender)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Started.ToString("D")</td>
+            <td>
+                @string.Format("{0} {1}", item.Forename, item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.Partial("_PrintReport")

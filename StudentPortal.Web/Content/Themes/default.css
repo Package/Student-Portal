@@ -1,0 +1,120 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+* {
+    font-family: 'Segoe UI', Open Sans, Arial, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+body {
+    /*background: #ebeced;*/
+    background: #E3F2FD;
+    color: #555;
+}
+
+footer {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-top: 0;
+}
+
+/* Links */
+a {
+    text-decoration: underline;
+}
+
+    a.btn {
+        text-decoration: none;
+    }
+
+        a.btn:hover {
+            border-style: solid;
+            border-color: inherit;
+        }
+
+.navbar-nav a, .navbar-brand {
+    text-decoration: none;
+}
+
+/* Navbar branding */
+.navbar-default {
+    background: #fff;
+}
+
+.navbar.navbar-default {
+    border-top: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0;
+}
+
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 0;
+    border-radius: 2px;
+}
+
+.breadcrumb {
+    background: inherit;
+}
+
+/* Page titles */
+.page-header {
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #777;
+}
+
+h2.page-header {
+    font-size: 14px;
+}
+
+h4.page-header {
+    font-size: 12px;
+}
+
+/* Form inputs  */
+input, select, textarea, button {
+    border-radius: 0px !important;
+}
+
+.input-validation-error {
+    border: 2px solid red !important;
+}
+
+/*input, select, textarea {
+    border-color: #ECECEC !important;
+    background-color: #ECECEC !important;
+}*/
+
+/* Buttons */
+.btn-success {
+    background: #34495e !important;
+    border-color: #34495e !important;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: #2c3e50 !important;
+    border-color: #2c3e50 !important;
+    border-radius: 0;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background: #2c3e50 !important;
+        border-color: #2c3e50 !important;
+    }
+
+.btn-success:hover, .btn-success:focus {
+    background: #34495e !important;
+    border-color: #34495e !important;
+}
+
+

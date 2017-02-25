@@ -1,0 +1,53 @@
+﻿@model StudentPortal.Domain.Models.Institution
+
+@{
+    ViewBag.Title = "Institution Management";
+}
+
+<h2 class="page-header">Institution Management</h2>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Logo)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group block">
+        @Html.LabelFor(model => model.Logo)
+        <p class="help-block">Must be a PNG image and the size must be width: 115px height: 30px.</p>
+        <input type="file" name="logo" />
+
+        @if (!string.IsNullOrEmpty(Model.Logo))
+        {
+            <p class="mt-20">Current logo:</p>
+            <img src="@Url.Content("~/Images/" + Model.Logo)" title="Current logo" alt="Current logo" />
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactNumber)
+        @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactEmail)
+        @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

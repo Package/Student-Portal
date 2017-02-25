@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Data Management";
+}
+
+<h2 class="page-header">Data Management</h2>
+<p>Welcome to the Data Management of the Student Portal. This section is available to only data officers. This section can be used to manage:</p>
+
+<ul>
+    <li><a href="@Url.Action("Default", "CourseGroupManagement", new { area = "Data"})">Course Groups</a></li>
+    <li><a href="@Url.Action("Default", "CourseManagement", new { area = "Data" })">Courses</a></li>
+    <li><a href="@Url.Action("Default", "DisabilityManagement", new { area = "Data" })">Disabilities / Learning Support</a></li>
+    <li><a href="@Url.Action("Default", "QualificationManagement", new { area = "Data" })">Qualifications</a></li>
+    <li><a href="@Url.Action("Default", "TitleManagement", new { area = "Data" })">Titles</a></li>
+    <li><a href="@Url.Action("Default", "CountryManagement", new { area = "Data"})">Countries</a></li>
+    <li><a href="@Url.Action("Default", "EthnicityManagement", new { area = "Data" })">Ethnicities</a></li>
+    <li><a href="@Url.Action("Default", "GenderManagement", new { area = "Data" })">Genders</a></li>
+    <li><a href="@Url.Action("Default", "SchoolManagement", new { area = "Data" })">Schools</a></li>
+    <li><a href="@Url.Action("Default", "ApplicationProgressManagement", new { area = "Data" })">Application progress</a></li>
+</ul>

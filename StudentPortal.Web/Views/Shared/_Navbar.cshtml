@@ -1,0 +1,33 @@
+﻿
+<div class="navbar-collapse collapse">
+    @if (Request.IsAuthenticated)
+    {
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("My Applications", "Default", "Applications", new { area = "" }, null)</li>
+
+            @if (User.IsInRoles("Admin"))
+            {
+                <li>@Html.ActionLink("Administration", "Home", "Admin", new { area = "Admin" }, null)</li>
+            }
+            @if (User.IsInRoles("Admin", "Data"))
+            {
+                <li>@Html.ActionLink("Data management", "Home", "Data", new { area = "Data" }, null)</li>
+            }
+            @if (User.IsInRoles("Admin", "Admissions"))
+            {
+                <li>@Html.ActionLink("Admissions", "Home", "Admissions", new { area = "Admissions" }, null)</li>
+            }
+            @if (User.IsInRoles("Admin", "Admissions", "SMT", "Data", "Staff"))
+            {
+                <li>@Html.ActionLink("Reports", "Home", "Reporting", new { area = "Reporting" }, null)</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("View Courses", "Default", "Prospectus", new { area = "" }, null)</li>
+        </ul>
+    }
+    @Html.Partial("_LoginPartial")
+</div>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<StudentPortal.Domain.Models.Application>
+
+@{
+    ViewBag.Title = "My applications";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li class="active">My applications</li>
+</ol>
+
+@if (Model != null && Model.Any())
+{
+    <h2 class="page-header">My applications</h2>
+
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Complete)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Submitted)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Started)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.Submitted ? "success" : item.Complete ? "warning" : string.Empty)">
+                <td class="text-center">
+                    @if (item.Complete)
+                    {
+                        <span><i class="glyphicon glyphicon-ok green" title="Yes"></i> Yes</span>
+                    }
+                    else
+                    {
+                        <span><i class="glyphicon glyphicon-remove red" title="No"></i> No</span>
+                    }
+                </td>
+                <td class="text-center">
+                    @if (item.Submitted)
+                    {
+                        <span><i class="glyphicon glyphicon-ok green" title="Yes"></i> Yes</span>
+                    }
+                    else
+                    {
+                        <span><i class="glyphicon glyphicon-remove red" title="No"></i> No</span>
+                    }
+                </td>
+                <td class="text-center">
+                    @{ // Todo: Show the progress of the application here
+                    }
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td class="text-center">
+                    @item.Started.ToString("D")
+                </td>
+                <td class="text-center">
+                    @if (item.Submitted)
+                    {
+                        // Todo: ability to view the progress on the application.
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Resume application", "Continue", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<h2 class="page-header">New Application</h2>
+@if (Model != null && Model.Any())
+{
+    <p class="text-muted">You can resume an exisiting application above if you have not completed it yet, or you can start a fresh application below.</p>
+}
+else
+{
+    <p class="text-muted">You have not made any applications yet. Press the button below to begin.</p>
+}
+<p>
+    @Html.ActionLink("Start a new application", "Create", null, new { @class = "btn btn-success" })
+</p>

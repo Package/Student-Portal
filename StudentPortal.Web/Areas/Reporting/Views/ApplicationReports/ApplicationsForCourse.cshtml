@@ -1,0 +1,66 @@
+﻿@model IEnumerable<StudentPortal.Domain.Models.Reports.ApplicantDetails>
+
+@{
+    ViewBag.Title = "Applications For Course";
+
+    List<Course> _courses = (List<Course>) ViewBag.Courses;
+    List<CourseGroup> _groups = (List<CourseGroup>) ViewBag.CourseGroups;
+    int? courseCode = string.IsNullOrEmpty(ViewBag.CourseCode) ? null : Convert.ToInt32(ViewBag.CourseCode);
+    string courseGroupCode = ViewBag.CourseGroupCode;
+}
+
+<h2 class="page-header">Applications For Course Report</h2>
+
+@using (Html.BeginForm("", "", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("courseCode", "Select a course to view the applications for")
+        @Html.DropDownList("courseCode", _courses.ToSelectList(_groups, courseCode), "Please select", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("courseGroupCode", "View all applications for a course group")
+        @Html.DropDownList("courseGroupCode", _groups.ToList<ISelectable>().ToSelectList(courseGroupCode), "Please select", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Update</button>
+    </div>
+}
+
+<p>Found @Model.Count() results.</p>
+
+<table class="table table-condensed table-hover table-striped table-bordered">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Finished)</th>
+        <th>Name</th>
+        <th>@Html.DisplayNameFor(model => model.Gender)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Finished.ToString("D")</td>
+            <td>
+                @string.Format("{0} {1}", item.Forename, item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.Partial("_PrintReport")

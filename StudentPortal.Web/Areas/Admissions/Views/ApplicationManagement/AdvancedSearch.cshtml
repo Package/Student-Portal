@@ -1,0 +1,28 @@
+﻿@model IPagedList<StudentPortal.Domain.ViewModels.BasicApplicationDetailsViewModel>
+
+@{
+    ViewBag.Title = "Application Management";
+}
+
+<h2 class="page-header">Application Management</h2>
+
+@using (Html.BeginForm("Default", "ApplicationManagement", FormMethod.Get, new { @class = "mb-10" }))
+{
+    @Html.TextBox("Search", Request["Search"], new { placeholder = "Enter search" })
+    <button type="submit">Search</button>
+}
+<p>
+    @Html.ActionLink("Advanced search", "AdvancedSearchForm")
+</p>
+
+@Html.Partial("_ApplicationList")
+
+@Html.PagedListPager(Model, Page => Url.Action("AdvancedSearch", new {
+    Search = Request["Search"],
+    StartDate = Request["StartDate"],
+    EndDate = Request["EndDate"],
+    CourseId = Request["CourseId"],
+    CourseGroupId = Request["CourseGroupId"],
+    ProgressId = Request["ProgressId"],
+    Page = Page
+}))

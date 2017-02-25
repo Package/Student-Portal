@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Admin Management";
+}
+
+<h2 class="page-header">Admin Management</h2>
+<p>Welcome to the Admin Management of the Student Portal. This section is available to only system administrators and can be used to:</p>
+
+<ul>
+    <li>@Html.ActionLink("Manage institution settings", "Default", "InstitutionManagement", new { area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Manage users and roles", "Default", "UserManagement", new { area = "Admin" }, null)</li>
+</ul>

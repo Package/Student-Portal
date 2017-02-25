@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Start your application";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Applications")">My applications</a></li>
+    <li class="active">Start a new application</li>
+</ol>
+
+<h2 class="page-header">Start your application</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Begin", "Applications", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <p>Please note to complete the application form you'll need to have access to the following:</p>
+            <ul>
+                <li>Your personal details, including your address, previous schools/colleges and an emergency contact.</li>
+                <li>Details of the course(s) you wish to study.</li>
+                <li>A list of your qualifications, including predicted and actual grades where appropriate.</li>
+                <li>Any medical or allergy information, including any additional learning support you may require.</li>
+            </ul>
+            <p>Please select the button below to begin your application when you are ready. You may take as much time as you need to complete the application, and you may even log out and resume at a later point.</p>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Start application</button>
+            </div>
+        }
+    </div>
+</div>

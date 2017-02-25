@@ -1,0 +1,37 @@
+﻿@model StudentPortal.Domain.Models.Country
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Country</h4>
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MISCode)
+        @Html.EditorFor(model => model.MISCode, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.MISCode, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group block">
+        <input type="submit" value="Create" class="btn btn-success" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Default")
+</div>

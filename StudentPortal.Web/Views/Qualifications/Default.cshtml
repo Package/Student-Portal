@@ -1,0 +1,110 @@
+﻿@model StudentPortal.Domain.Models.Qualification
+
+@{
+    ViewBag.Title = "My Qualifications";
+
+    List<Qualification> _quals = (List<Qualification>) ViewBag.Qualifications;
+    List<QualificationType> _types = (List<QualificationType>) ViewBag.QualificationTypes;
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Applications")">My applications</a></li>
+    <li><a href="@Url.Action("Manage", "Applications")">Current application</a></li>
+    <li class="active">Qualifications</li>
+</ol>
+
+<h2 class="page-header">My Qualifications</h2>
+
+<p class="text-muted">Please provide details of all the qualifications you have. Be sure to include your GCSE grades if you have studied them.</p>
+<p class="text-muted">If you have studied at College or University before, please include those relevant qualifications too.</p>
+<p class="text-muted">If you don't have any formal qualifications, please select the type as 'I dont have any formal qualifications'.</p>
+
+@if (_quals != null && _quals.Any())
+{
+    <h4 class="page-header">Qualifications entered</h4>
+    <table class="table table-bordered table-hover table-striped table-condensed">
+        <thead>
+            <tr>
+                <th class="text-center">Name/Description</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Grade (predicted)</th>
+                <th class="text-center">Grade (actual)</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Qualification qual in _quals)
+            {
+                <tr>
+                    <td class="text-center">@qual.Name</td>
+                    <td class="text-center">@qual.Type</td>
+                    <td class="text-center">@qual.PredictedGrade</td>
+                    <td class="text-center">@qual.ActualGrade</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Qualifications", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", qual.Id)
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <h4 class="page-header">Add a qualification</h4>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type)
+        @Html.DropDownListFor(model => model.Type, _types.ToQualificationTypeSelectList(Model.Type), "Please select...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PredictedGrade)
+        @Html.EditorFor(model => model.PredictedGrade, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.PredictedGrade, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActualGrade)
+        @Html.EditorFor(model => model.ActualGrade, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ActualGrade, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group block">
+        <button class="btn btn-primary" type="submit">Add qualification</button>
+    </div>
+}
+
+@if (_quals != null && _quals.Any())
+{
+    using (Html.BeginForm("Continue", "Qualifications", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <p class="text-muted">Once you have added all your qualifications, press the button below to continue.</p>
+            <button type="submit" class="btn btn-success">Continue</button>
+        </div>
+
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,70 @@
+﻿@model StudentPortal.Domain.Models.Course
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Course</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Code)
+        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title)
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type)
+            @Html.DropDownListFor(model => model.Type, new SelectList(ViewBag.CourseGroups, "Id", "Name"), "Please select...", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Information)
+            @Html.EditorFor(model => model.Information, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Information, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActiveFrom)
+            @Html.EditorFor(model => model.ActiveFrom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ActiveFrom, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActiveTo)
+            @Html.EditorFor(model => model.ActiveTo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ActiveTo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Active)
+            @Html.LabelFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group block">
+            <button class="btn btn-success" type="submit">Continue</button>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Default")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

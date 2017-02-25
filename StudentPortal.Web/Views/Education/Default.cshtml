@@ -1,0 +1,41 @@
+﻿@model StudentPortal.Domain.Models.EducationHistory
+
+@{
+    ViewBag.Title = "Education History";
+    var _schools = ((List<School>) ViewBag.Schools).ToList<ISelectable>();
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Applications")">My applications</a></li>
+    <li><a href="@Url.Action("Manage", "Applications")">Current application</a></li>
+    <li class="active">Education history</li>
+</ol>
+
+<h2 class="page-header">Education History</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.SchoolOrCollege)
+        @Html.DropDownListFor(model => model.SchoolOrCollege, _schools.ToSelectList(Model.SchoolOrCollege), "Please select...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SchoolOrCollege, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastYear)
+        @Html.EditorFor(model => model.LastYear, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastYear, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group block">
+        <button class="btn btn-success" type="submit">Continue</button>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

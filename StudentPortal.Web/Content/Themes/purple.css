@@ -1,0 +1,43 @@
+﻿/* Links */
+a {
+    color: #8e44ad;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #8e44ad;
+}
+
+body {
+    background: #EDE7F6;
+}
+
+/* Page titles */
+.page-header {
+    color: #777;
+}
+
+/* Buttons */
+.btn-success {
+    background: #9b59b6 !important;
+    border-color: #9b59b6 !important;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: #8e44ad !important;
+    border-color: #8e44ad !important;
+    border-radius: 0;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background: #8e44ad !important;
+        border-color: #8e44ad !important;
+    }
+
+.btn-success:hover, .btn-success:focus {
+    background: #9b59b6 !important;
+    border-color: #9b59b6 !important;
+}
+
+

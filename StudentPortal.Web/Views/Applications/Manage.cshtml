@@ -1,0 +1,208 @@
+﻿@model StudentPortal.ViewModels.ApplicationDetailsViewModel
+
+@{
+    ViewBag.Title = "Manage your application";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Applications")">My applications</a></li>
+    <li class="active">Manage my application</li>
+</ol>
+
+@if (Model.Complete)
+{
+    <div class="alert alert-info">
+        <h4>My application is now complete and ready to be submitted.</h4>
+        <p>Please be aware that once you submit your application, you will not be able to make any further changes. We therefore recommend you spend the time to read through and double check your details before finally submitting your application.</p>
+
+        @using (Html.BeginForm("Submit", "Applications", FormMethod.Post, new { @class="loading-form mt-10"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("id", Model.Application.Id)
+
+            <button type="submit" class="btn btn-primary">Submit application</button>
+        }
+    </div>
+}
+
+<h2 class="page-header">Manage your application</h2>
+<p class="text-muted">Please refer to the below sections of your application. Each section will need to be completed in order to submit your application.</p>
+<p class="text-muted">You can complete the sections in any order, and you will be able to make as many changes as you need.</p>
+<p class="text-muted">There is no time limit for completing your application, and you can even log out and resume your application later if you wish.</p>
+
+@if (Model.PersonalDetails != null)
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> Personal Details</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Personal")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> Personal Details</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Personal")</p>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Address != null)
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-home"></i> My Address</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Address")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-home"></i> My Address</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Address")</p>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.CourseSelection != null)
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> My Course(s)</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Courses")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> My Course(s)</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Courses")</p>
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (Model.Qualifications != null && Model.Qualifications.Any())
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i> My Qualifications</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Qualifications")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i> My Qualifications</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Qualifications")</p>
+            </div>
+        </div>
+    </div>
+
+}
+
+@if (Model.Education != null)
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-education"></i> Education History</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Education")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-education"></i> Education History</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "Education")</p>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.LearningSupport != null)
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i> Learning Support</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have completed this section of your application.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "LearningSupport")</p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-md-6 no-left-padding">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i> Learning Support</h3>
+            </div>
+            <div class="panel-body">
+                <p>You have not completed this section of your application yet.</p>
+                <p>@Html.ActionLink("Edit this section", "Default", "LearningSupport")</p>
+            </div>
+        </div>
+    </div>
+}

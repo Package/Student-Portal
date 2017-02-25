@@ -1,0 +1,11 @@
+﻿
+To: @ViewBag.To
+From: administrator@studentportal.com
+Subject: @ViewBag.Subject
+
+<p>Hello @(ViewBag.Params["Name"]),</p>
+
+<p>The progress of your application to study at @(ViewBag.Params["Institution"]) has been updated.</p>
+<p>Please check the progess of your application on your <a href="@Url.Action("Default", "Applications", null, Request.Url.Scheme)">Application Dashboard</a>.</p>
+
+<p>Kind regards,<br />@(ViewBag.Params["Institution"])</p>

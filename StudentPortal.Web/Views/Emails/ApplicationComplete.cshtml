@@ -1,0 +1,13 @@
+﻿
+To: @ViewBag.To
+From: administrator@studentportal.com
+Subject: @ViewBag.Subject
+
+<p>Hello @(ViewBag.Params["Name"]),</p>
+
+<p>Thank you for completing our online application form. We have received your application and will be in touch shortly.</p>
+<p>Usually the process of reviewing your application takes up to 1 week, but in the mean time feel free to contact us on <a href="tel:@(ViewBag.Params["ContactPhone"])">@(ViewBag.Params["ContactPhone"])</a> or email <a href="mailto:@(ViewBag.Params["ContactEmail"])">@(ViewBag.Params["ContactEmail"])</a> if you have any questions.</p>
+<p>And don't forget, you can keep upto date with the progress of your application on your <a href="@Url.Action("Default", "Applications", null, Request.Url.Scheme)">Application Dashboard</a>.</p>
+<p>We look forward to being in touch with you soon.</p>
+
+<p>Kind regards,<br />@(ViewBag.Params["Institution"])</p>

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Application complete";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li class="active">Application complete</li>
+</ol>
+
+<h2 class="page-header">Application complete</h2>
+
+<p>Thank you for completing our online application form. We have received your application and will be in touch shortly.</p>
+<p>Usually the process of reviewing your application takes up to 1 week, but in the mean time feel free to contact us on <a href="tel:@(ViewBag.ContactPhone)">@(ViewBag.ContactPhone)</a> or email <a href="mailto:@(ViewBag.ContactEmail)">@(ViewBag.ContactEmail)</a> if you have any questions.</p>
+<p>And don't forget, you can keep upto date with the progress of your application on your <a href="@Url.Action("Default", "Applications")">Application Dashboard</a>.</p>
+<p>We look forward to being in touch with you soon.</p>
+<p>Regards,<br/>@(ViewBag.Institution)</p>

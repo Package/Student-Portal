@@ -1,0 +1,321 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+* {
+    font-family: 'Segoe UI', Open Sans, Arial, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    /*background: #F9F9F9 !important;*/
+    background: #ebeced;
+    padding-top: 80px;
+    font-size: 13px;
+    color: #555;
+}
+
+footer {
+    background: #fff;
+    padding: 15px;
+    /*margin-top: 10px;*/
+    border: 1px solid rgba(0,0,0,0.15);
+    border-top: 0;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.6);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#loading {
+    position: fixed;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: url(../Images/ajax-loader.gif) no-repeat;
+    display: none;
+}
+
+a {
+    text-decoration: underline;
+}
+
+    a.btn {
+        text-decoration: none;
+    }
+
+        a.btn:hover {
+            border-style: solid;
+            border-color: inherit;
+        }
+
+.navbar-nav a, .navbar-brand {
+    text-decoration: none;
+}
+
+    .navbar-nav a:hover, #logoLink:hover {
+        border: 0;
+    }
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding: 10px 15px;
+    background: #fff;
+    margin-top: 15px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 0;
+    border-radius: 2px;
+}
+
+.breadcrumb {
+    background: inherit;
+    padding: 10px 5px;
+    font-size: 12px;
+}
+
+/* Utilities */
+.no-padding {
+    padding: 0 !important;
+}
+.no-margin {
+    margin: 0 !important;
+}
+.no-left-padding {
+    padding-left: 0 !important;
+}
+
+.no-right-padding {
+    padding-right: 0 !important;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+i.glyphicon {
+    margin-right: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/* Override the Create bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+    width: 350px;
+    padding: 5px;
+}
+
+    .dl-horizontal dt:after {
+        content: ':';
+    }
+
+.dl-horizontal dd {
+    margin-left: 360px;
+    padding: 5px;
+    background: #f4f4f4;
+    margin-bottom: 5px;
+}
+
+.page-header {
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #777;
+}
+
+h2.page-header {
+    font-size: 14px;
+}
+
+h4.page-header {
+    font-size: 12px;
+}
+
+.input-validation-error {
+    border: 2px solid red !important;
+}
+
+.btn-success {
+    background: #007FAE !important;
+    border-color: #007FAE !important;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: #435C72 !important;
+    border-color: #435C72 !important;
+    border-radius: 0;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background: #435C72 !important;
+        border-color: #435C72 !important;
+    }
+
+.btn-success:hover, .btn-success:focus {
+    background: #007FAE !important;
+    border-color: #007FAE !important;
+}
+
+/* Form layour tweaks */
+.form-group {
+    display: inline-block;
+    width: calc(50% - 15px);
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+    padding: 5px;
+}
+
+    .form-group.block {
+        display: block;
+        width: 100%;
+    }
+
+input, select, textarea, button {
+    border-radius: 0px !important;
+}
+
+input, select, textarea {
+    /*border-color: #ECECEC !important;
+    background-color: #ECECEC !important;*/
+}
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+        padding-top: 5px;
+    }
+
+textarea {
+    resize: vertical;
+}
+
+.help-text {
+    padding: 5px;
+}
+
+
+/* Panels */
+.panel {
+    border-radius: 0;
+}
+
+.panel-success .panel-heading {
+    background: #d0e9c6;
+}
+
+.panel-error .panel-heading {
+    background: #ebcccc;
+}
+
+/* Navbar branding */
+.navbar-default {
+    background: #fff;
+    /*background: #f9f9f9;*/
+}
+
+.navbar.navbar-default {
+    border-top: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0;
+}
+
+/* Logo branding */
+#logo {
+    margin: 10px 25px 10px 0;
+}
+
+
+/* Responsive goodness */
+
+/* Tweak when the bootstrap mobile menu kicks in, with lots of menu items active this needs to be at around 1000px */
+@media (max-width: 1000px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+    footer #logo {
+        display: none;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .form-group {
+        display: block;
+        width: 100%;
+    }
+    #logo {
+        padding: 5px 15px;
+    }
+}
+
+
+/* Hide elements on print */
+@media only print {
+    footer {
+        display: none;
+    }
+}

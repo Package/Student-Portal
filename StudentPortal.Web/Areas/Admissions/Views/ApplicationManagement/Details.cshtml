@@ -1,0 +1,172 @@
+﻿@model StudentPortal.ViewModels.ApplicationDetailsViewModel
+
+@{
+    string person = string.Format("{0} {1}", Model.PersonalDetails.Forename, Model.PersonalDetails.Surname);
+    string title = string.Format("Viewing {0}'s Application", person);
+    ViewBag.Title = title;
+}
+
+<h2 class="page-header">@title</h2>
+
+<div class="row hidden-print">
+    <div class="col-md-12">
+        <p class="help-text">Please review the details below for @(person)'s application, then update the application status below. The student will then be automatically emailed to inform them to check on the progress of their application.</p>
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("Update", "ApplicationManagement", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("applicationId", Model.Application.Id)
+
+            <div class="form-group">
+                @Html.DropDownList("progressId", Model.Progress.ToList<ISelectable>().ToSelectList(Model.Application.Progress.ToString()), "Please select...", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <h4 class="page-header">Personal Details</h4>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Title)</dt>
+        <dd>@(Model.Titles.ToList<ISelectable>().ConvertSelectedValueToString(Model.PersonalDetails.Title))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Forename)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.Forename)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Surname)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.Surname)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Gender)</dt>
+        <dd>@(Model.Genders.ToList<ISelectable>().ConvertSelectedValueToString(Model.PersonalDetails.Gender))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.DateOfBirth)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.DateOfBirth)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.EmailAddress)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.EmailAddress)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.MobileNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.MobileNumber)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.TelephoneNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.TelephoneNumber)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Country)</dt>
+        <dd>@(Model.Countries.ToList<ISelectable>().ConvertSelectedValueToString(Model.PersonalDetails.Country))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Ethnicity)</dt>
+        <dd>@(Model.Ethnicities.ToList<ISelectable>().ConvertSelectedValueToString(Model.PersonalDetails.Ethnicity))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.Nationality)</dt>
+        <dd>@(Model.Countries.ToList<ISelectable>().ConvertSelectedValueToString(Model.PersonalDetails.Nationality))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.NextOfKinName)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.NextOfKinName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PersonalDetails.NextOfKinContactNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.PersonalDetails.NextOfKinContactNumber)</dd>
+    </dl>
+
+    <h4 class="page-header">Address</h4>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Address.Line1)</dt>
+        <dd>@Html.DisplayFor(model => model.Address.Line1)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address.Line2)</dt>
+        <dd>@Html.DisplayFor(model => model.Address.Line2)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address.PostCode)</dt>
+        <dd>@Html.DisplayFor(model => model.Address.PostCode)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address.Town)</dt>
+        <dd>@Html.DisplayFor(model => model.Address.Town)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address.TelephoneNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.Address.TelephoneNumber)</dd>
+    </dl>
+
+    <h4 class="page-header">Course(s)</h4>
+    <dl class="dl-horizontal">
+        @{ List<ISelectable> selectableCourses = Model.Courses.ToList<ISelectable>(); }
+        <dt>@Html.DisplayNameFor(model => model.CourseSelection.FirstChoice)</dt>
+        <dd>@(selectableCourses.ConvertSelectedValueToString(Model.CourseSelection.FirstChoice.ToString()))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.CourseSelection.SecondChoice)</dt>
+        <dd>@(selectableCourses.ConvertSelectedValueToString(Model.CourseSelection.SecondChoice.ToString()))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.CourseSelection.ThirdChoice)</dt>
+        <dd>@(selectableCourses.ConvertSelectedValueToString(Model.CourseSelection.ThirdChoice.ToString()))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.CourseSelection.FourthChoice)</dt>
+        <dd>@(selectableCourses.ConvertSelectedValueToString(Model.CourseSelection.FourthChoice.ToString()))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.CourseSelection.Notes)</dt>
+        <dd>@Html.Raw(Model.CourseSelection.Notes)</dd>
+    </dl>
+
+    <h4 class="page-header">Qualifications</h4>
+    <table class="table table-condensed table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Grade (predicted)</th>
+                <th class="text-center">Grade (actual)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var qual in Model.Qualifications)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(model => qual.Name)</td>
+                    <td class="text-center">@Html.DisplayFor(model => qual.Type)</td>
+                    <td class="text-center">@Html.DisplayFor(model => qual.PredictedGrade)</td>
+                    <td class="text-center">@Html.DisplayFor(model => qual.ActualGrade)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="page-header">Education history</h4>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Education.SchoolOrCollege)</dt>
+        <dd>@(Model.Schools.ToList<ISelectable>().ConvertSelectedValueToString(Model.Education.SchoolOrCollege))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Education.LastYear)</dt>
+        <dd>@Html.DisplayFor(model => model.Education.LastYear)</dd>
+    </dl>
+
+    <h4 class="page-header">Learning support / Disabilities</h4>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.CriminalConviction)</dt>
+        <dd>@(Model.LearningSupport.CriminalConviction ? "Yes" : "No")</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.HasDisability)</dt>
+        <dd>@(Model.LearningSupport.HasDisability ? "Yes" : "No")</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.ReceivedLearningSupport)</dt>
+        <dd>@(Model.LearningSupport.ReceivedLearningSupport ? "Yes" : "No")</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.ExamAccessArrangements)</dt>
+        <dd>@(Model.LearningSupport.ExamAccessArrangements ? "Yes" : "No")</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.SENStatement)</dt>
+        <dd>@(Model.LearningSupport.SENStatement ? "Yes" : "No")</dd>
+
+        <dt>Disabilities / Support needs identified</dt>
+        <dd>@Html.DisplayFor(model => model.DisabilityString)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.LearningSupport.Notes)</dt>
+        <dd>@Html.Raw(Model.LearningSupport.Notes)</dd>
+    </dl>
+</div>
+
+<p>
+    <a href="javascript:window.print();">Print application details</a> |
+    @Html.ActionLink("Back to List", "Default")
+</p>

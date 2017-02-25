@@ -1,0 +1,76 @@
+﻿@model StudentPortal.Domain.Models.Course
+
+@{
+    ViewBag.Title = "Course Details";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/">Home</a></li>
+    <li><a href="@Url.Action("Default", "Prospectus")">Browse our courses</a></li>
+    <li class="active">Course details</li>
+</ol>
+
+<h2 class="page-header">Course Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Information)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Information)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiveFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiveTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Default")
+</p>

@@ -1,0 +1,9 @@
+﻿
+@if (Request["theme"] != null)
+{
+    <link rel="stylesheet" href="~/Content/Themes/@(Request["theme"]).css" />
+}
+else
+{
+    <link rel="stylesheet" href="~/Content/Themes/green.css" />
+}

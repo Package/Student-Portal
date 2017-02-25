@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Reporting";
+}
+
+<h2 class="page-header">Reporting</h2>
+<p>Welcome to the Reporting section of the Student Portal. In this section you'll be able to find a range of useful reports, statistics and information surrounding the application data available on the Student Portal.</p>
+
+<ul>
+    <li><a href="@Url.Action("ApplicationsForCourse", "ApplicationReports", new { area = "Reporting" })">Applications for Course / Course Group</a></li>
+    <li><a href="@Url.Action("ApplicationsByCourse", "ApplicationReports", new { area = "Reporting" })">Applications by Course</a></li>
+    <li><a href="@Url.Action("ApplicationsByCourseGroup", "ApplicationReports", new { area = "Reporting" })">Applications by Course Group</a></li>
+    <li><a href="@Url.Action("ApplicationsByGender", "ApplicationReports", new { area = "Reporting" })">Applications by Gender</a></li>
+    <li><a href="@Url.Action("ApplicationsBySchool", "ApplicationReports", new { area = "Reporting" })">Applications by School</a></li>
+    <li><a href="@Url.Action("ApplicationsByEthnicity", "ApplicationReports", new { area = "Reporting" })">Applications by Ethnicity</a></li>
+    <li><a href="@Url.Action("ApplicationsByAge", "ApplicationReports", new { area = "Reporting" })">Applications by Age</a></li>
+    <li><a href="@Url.Action("ApplicationsByDisability", "ApplicationReports", new { area = "Reporting" })">Applications by Disability</a></li>
+    <li><a href="@Url.Action("ApplicationsByStatus", "ApplicationReports", new { area = "Reporting" })">Applications by Status</a></li>
+    <li><a href="@Url.Action("IncompleteApplications", "ApplicationReports", new { area = "Reporting" })">Incomplete applicant details</a></li>
+</ul>

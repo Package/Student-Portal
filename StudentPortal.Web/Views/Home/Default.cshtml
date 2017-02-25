@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2 class="page-header">Online Student Portal</h2>
+
+<p>Welcome to the Online Student Portal for @(ViewBag.Institution). Here you'll be able to make your application to study at @(ViewBag.Institution), track the progress of your application, and much more.</p>
+<p>Please select from the options below to either create your account or log back in.</p>
+
+<h4 class="page-header">Create your account</h4>
+<p>If you haven’t created an account, you will need to do this before you can complete our online application form.</p>
+<p><a href="@Url.Action("Register", "Account")" class="btn btn-success" role="button">Create my account now</a></p>
+
+<h4 class="page-header">Resume your application</h4>
+<p>If you have already created an account, simply log in and you can resume your application or track your application progress.</p>
+<p><a href="@Url.Action("Login", "Account")" class="btn btn-success" role="button">Log in to my account</a></p>

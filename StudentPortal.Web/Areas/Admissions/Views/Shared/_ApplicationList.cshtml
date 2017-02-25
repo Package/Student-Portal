@@ -1,0 +1,22 @@
+﻿@model IPagedList<StudentPortal.Domain.ViewModels.BasicApplicationDetailsViewModel>
+
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>Reference code</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date applied</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Application.Id</td>
+            <td>@string.Format("{0} {1}", item.PersonalDetails.Forename, item.PersonalDetails.Surname)</td>
+            <td>@item.PersonalDetails.EmailAddress</td>
+            <td>@Html.DisplayFor(modelItem => item.Application.Finished)</td>
+            <td>@Html.ActionLink("View details", "Details", new { id = item.Application.Id })</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,29 @@
+﻿@model Dictionary<School, int>
+@{
+    ViewBag.Title = "Applications By School Report";
+}
+
+<h2 class="page-header">Applications By School Report</h2>
+
+
+<table class="table table-condensed table-hover table-striped table-bordered">
+    <tr>
+        <th>School</th>
+        <th>Applications</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Key.Name</td>
+            <td>@item.Value</td>
+        </tr>
+    }
+
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>@(Model.Values.Sum())</strong></td>
+    </tr>
+</table>
+
+@Html.Partial("_PrintReport")
